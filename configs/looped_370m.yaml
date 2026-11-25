@@ -1,0 +1,38 @@
+model:
+  family: looped
+  n_layer: 20
+  n_embd: 1152
+  n_head: 18
+  loops: 4
+  vocab_size: 49152
+  seq_len: 2048
+  f32_residual: true
+train:
+  data: data
+  tokens: 18756927488
+  batch_size: 512
+  micro: 32
+  lr: 0.0283
+  embedding_lr: 0.15
+  scalar_lr: 0.15
+  weight_decay: 0.02469231
+  attn_input_decay: 0.0
+  cooldown: 0.2
+  seed: 0
+  val_sequences: 16384
+  val_every: 1000
+  out: runs/looped_370m
+carving:
+  model: {remat: true}
+  gate_init: 0.1
+  gate_upper: null
+  gate_lr: 0.001
+  conn_lr: 0.001
+  pressure_start: 340
+  rate_prior: 0.83
+  rate_fit_start: 1400
+  rate_start: 200
+  rate_window: 0.5
+  rate_readings: 8
+  removal_every: 300
+  removal_lead: 400

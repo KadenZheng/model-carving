@@ -1,0 +1,38 @@
+model:
+  family: standard
+  n_layer: 24
+  n_embd: 2048
+  n_head: 32
+  loops: 1
+  vocab_size: 49152
+  seq_len: 2048
+  f32_residual: true
+train:
+  data: data
+  tokens: 65431142400
+  batch_size: 512
+  micro: 32
+  lr: 0.02
+  embedding_lr: 0.15
+  scalar_lr: 0.15
+  weight_decay: 0.010016025641025642
+  attn_input_decay: 0.1
+  cooldown: 0.2
+  seed: 0
+  val_sequences: 16384
+  val_every: 1000
+  out: runs/standard_1p3b
+carving:
+  model: {remat: true}
+  gate_init: 0.1
+  gate_upper: 1.0
+  gate_lr: 0.001
+  conn_lr: 0.001
+  pressure_start: 340
+  rate_prior: 0.51
+  rate_fit_start: 1400
+  rate_start: 200
+  rate_window: 0.5
+  rate_readings: 8
+  removal_every: 300
+  removal_lead: 400
